@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BB52BC46-236F-48E0-A153-92EC8A444693}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\ServerPOCTransp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ZxingRAD12\ZxingDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ServerPOCTransp">
+        <MSBuild Projects="Server\ServerPOCTransp.dproj"/>
+    </Target>
+    <Target Name="ServerPOCTransp:Clean">
+        <MSBuild Projects="Server\ServerPOCTransp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerPOCTransp:Make">
+        <MSBuild Projects="Server\ServerPOCTransp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZxingDemo">
+        <MSBuild Projects="ZxingRAD12\ZxingDemo.dproj"/>
+    </Target>
+    <Target Name="ZxingDemo:Clean">
+        <MSBuild Projects="ZxingRAD12\ZxingDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZxingDemo:Make">
+        <MSBuild Projects="ZxingRAD12\ZxingDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ServerPOCTransp;ZxingDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ServerPOCTransp:Clean;ZxingDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ServerPOCTransp:Make;ZxingDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
